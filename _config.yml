@@ -8,6 +8,7 @@
 # Site settings
 title: Data.SC
 description: "Blog about data science, statistical modeling, and related topics" # write a nice description for your blog
+subtitle: "Blog about data science, statistical modeling, and related topics"
 baseurl: '' # the subpath of your site, e.g. /blog
 url: '' # the base hostname & protocol for your site http://www.example.com
 # google_analytics: 'UA-XXXXXX-X'
