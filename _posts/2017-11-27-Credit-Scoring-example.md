@@ -2,9 +2,9 @@
 layout: post
 title: Credit Scoring Walkthrough - Part 1
 author: Stevan Caric
-published: true
+published: false
 status: publish
-draft: true
+draft: false
 tags: R RStudio
 ---
 
