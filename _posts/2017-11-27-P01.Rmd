@@ -1,6 +1,6 @@
 ---
-title: "Credit Scoring - Part 1"
-output: github_document
+layout: post
+title: Credit Scoring - Part 1
 ---
 
 ```{r setup, include=FALSE}
