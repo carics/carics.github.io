@@ -25,5 +25,5 @@ Including Plots
 You can also embed plots, for example:
 
 ![](2017-11-27-files/pressure-1.png)
-
+url('../_posts/2017-11-27-files/pressure-1.png')
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
