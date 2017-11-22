@@ -1,6 +1,11 @@
 ---
 layout: post
 title: Credit Scoring Walkthrough - Part 1
+author: Stevan Caric
+published: false
+status: publish
+draft: true
+tags: R RStudio
 ---
 
 This is an R Markdown format used for publishing markdown documents to GitHub. When you click the **Knit** button all R code chunks are run and a markdown file (.md) suitable for publishing to GitHub is generated.
