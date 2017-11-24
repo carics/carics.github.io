@@ -7,7 +7,7 @@
 
 # Site settings
 title: Data.SCi
-description: "A blog about data science and economics" # write a nice description for your blog
+description: "A blog about R, data science and economics" 
 subtitle: "A blog about data science, statistical modeling, and related topics"
 baseurl: '' # the subpath of your site, e.g. /blog
 url: '' # the base hostname & protocol for your site http://www.example.com
