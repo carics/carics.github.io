@@ -384,7 +384,7 @@ But before we deal with our precious missing data, we should fully direct attent
 
 The first variable we analyse is **BAD**, which will be the target variable in our credit scoring model.
 
-![plot of chunk bp_bad-1.png](figures/post01/bp_bad-1.png)
+![plot of chunk bp_bad-1.png](/figures/post01/bp_bad-1.png)
 
 This simple bar plot shows that the proportion of bad applicants (those who are seriously delinquent or already defaulted) in the data set is about 20%. The total number of 'bads' (roughly 1,200) is more or less acceptable for the model development.
 
