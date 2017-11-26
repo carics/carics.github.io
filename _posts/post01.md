@@ -392,45 +392,45 @@ This simple bar plot shows that the proportion of bad applicants (those who are 
 
 Our next step is to visually inspect the relation between the target variable and other variables in the data set. For the categorical variables and continuous variables with relatively small number of possible values we will use bar plots. On the other hand, for the "regular" continuous variables we will produce their density curves.
 
-![](post01_files/figure-markdown_github/bp_reason-1.png)
+![](/figures/post01/bp_reason-1.png)
 
 It is obvious that the bad rate (*b**a**d**s*/(*g**o**o**d**s* + *b**a**d**s*)) is roughly the same no matter what is the reason for a loan. In fact, calculated Cramer's V value (`CramerV()` from [DescTools](https://www.rdocumentation.org/packages/DescTools/versions/0.99.19/topics/Association%20measures) was used) of just 0.04 confirms this conclusion, with 0.10 commonly used in industry as cutoff value. Furthermore, it seems that missing values in this case care no valuable information.
 
-![](post01_files/figure-markdown_github/bp_job-1.png)
+![](/figures/post01/bp_job-1.png)
 
 Clearly, the occupation of the applicant matters (Cramer's V = 0.13). For instance, the bad rate for a sales person is almost three times as high as for an office worker. Also, in this data set the lowest risk, surprisingly, exhibit the obligors whose occupation information is not available.
 
-![](post01_files/figure-markdown_github/bp_derog-1.png)
+![](/figures/post01/bp_derog-1.png)
 
 As expected, the higher the number of major derogatory reports, the greater the risk. This variable is continuous, but it could be easily, and probably without much loss of information, converted to ordinal factor variable (e.g. zero, one, and two or more reports).
 
-![](post01_files/figure-markdown_github/bp_delinq-1.png)
+![](/figures/post01/bp_delinq-1.png)
 
-![](post01_files/figure-markdown_github/bp_ninq-1.png)
+![](/figures/post01/bp_ninq-1.png)
 
 The variables DELINQ and NINQ exhibit similar behaviour as previously mentioned DEROG variable, so they too can be transformed to discrete variables.
 
-![](post01_files/figure-markdown_github/dens_loan-1.png)
+![](/figures/post01/dens_loan-1.png)
 
 It seems that the applicants who took smaller home equity loans are somewhat riskier than those with larger ones. One possible explanation could be that application process for the higher loans is more rigorous.
 
-![](post01_files/figure-markdown_github/dens_mortd-1.png)
+![](/figures/post01/dens_mortd-1.png)
 
-![](post01_files/figure-markdown_github/dens_val-1.png)
+![](/figures/post01/dens_val-1.png)
 
 At first glance, amount due on the mortgage and value of current property don't seem to be especially related to the likelihood that applicant will repay a debt.
 
-![](post01_files/figure-markdown_github/dens_yoj-1.png)
+![](/figures/post01/dens_yoj-1.png)
 
 On the other hand, people who don't change their jobs so often seem to be safer bet for the lender.
 
-![](post01_files/figure-markdown_github/dens_clno-1.png)
+![](/figures/post01/dens_clno-1.png)
 
-![](post01_files/figure-markdown_github/dens_clage-1.png)
+![](/figures/post01/dens_clage-1.png)
 
 Further, it appears that the number of credit lines and age of the oldest credit line are to some extent related to the individual's credit risk.
 
-![](post01_files/figure-markdown_github/dens_debtinc-1.png)
+![](/figures/post01/dens_debtinc-1.png)
 
 Finally, debt-to-income ratio is definitely positively associated with probability of default on home equity loan.
 
@@ -714,7 +714,7 @@ The most notable differences in bad rates are present for the value of current p
 
 Before proceeding to model development, it is necessary to divide our data set into training and test set. Model(s) will be then developed using exclusively the training sample, while the test sample will be used for model validation. In our case, training sample will contain three quarters of the data set and it will be stratified by target variable, therefore bad rate will be the same for both samples (in R this can be accomplished with `createDataPartition()` function from [caret](http://topepo.github.io/caret/data-splitting.html) package). The final partition is shown in the bar plot.
 
-![](post01_files/figure-markdown_github/train_test-1.png)
+![](/figures/post01/train_test-1.png)
 
 ### End of Part One
 
