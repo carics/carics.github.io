@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Credit Scoring Walkthrough - Part 1
+title: Github Post Example
 author: Stevan Caric
 published: false
 status: publish
