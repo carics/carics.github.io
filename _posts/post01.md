@@ -394,7 +394,7 @@ Our next step is to visually inspect the relation between the target variable an
 
 ![](/figures/post01/bp_reason-1.png)
 
-It is obvious that the bad rate ($bads/(goods+bads)$) is roughly the same no matter what is the reason for a loan. In fact, calculated Cramer's V value (`CramerV()` from [DescTools](https://www.rdocumentation.org/packages/DescTools/versions/0.99.19/topics/Association%20measures) was used) of just 0.04 confirms this conclusion, with 0.10 commonly used in industry as cutoff value. Furthermore, it seems that missing values in this case care no valuable information.
+It is obvious that the bad rate ( $bads/(goods+bads)$ ) is roughly the same no matter what is the reason for a loan. In fact, calculated Cramer's V value (`CramerV()` from [DescTools](https://www.rdocumentation.org/packages/DescTools/versions/0.99.19/topics/Association%20measures) was used) of just 0.04 confirms this conclusion, with 0.10 commonly used in industry as cutoff value. Furthermore, it seems that missing values in this case care no valuable information.
 
 ![](/figures/post01/bp_job-1.png)
 
