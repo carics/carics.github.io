@@ -1,6 +1,10 @@
-Credit Scoring Walk-through - Part Two
-================
-Stevan Caric
+---
+layout: post
+title: Credit Scoring Walk-through - Part One
+author: Stevan Caric
+published: false
+status: publish
+---
 
 In Part One we demonstrated how to visually and statistically explore the data. In this post, we are going to apply the weight of evidence transformation to our predictors and then use logistic regression to develop our first credit scoring model.
 
@@ -34,13 +38,13 @@ The weight of evidence coding is basically a data pre-processing method. Its mai
 
 The WOE is calculated using the formula:
 
-![](eq_woe.png)
+![](/figures/post02/eq_woe.png)
 
 Positive WOE means that, for the particular bin, the proportion of goods is larger than the proportion of bads.
 
 Information Value (IV), on the other hand, measures the predictive power of a variable, and is defined by the equation:
 
-![](eq_iv.png)
+![](/figures/post02/eq_iv.png)
 
 where *n* is the total number of bins. The relationship between IV and the variable's predictive power is presented in the next table:
 
