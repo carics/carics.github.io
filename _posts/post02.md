@@ -110,7 +110,8 @@ Suspicious or too good to be true
 </td>
 </tr>
 </table>
-There are many R packages that can be applied to calculate the weight of evidence and information value. Here, we will use quite versatile [scorecard](https://cran.r-project.org/web/packages/scorecard/index.html) package. Its function `woebin()` performs automatic optimal binning for the predictors using tree-like segmentation, but it also offers you an option to pick your own breakpoints. However, it should be taken into account that `woebin()` computes WOE as *ln(Distr.Bad<sub>i</sub> / Distr.Good<sub>i</sub>)*, so we need to multiply all resulting WOEs by *-100* to get the values that are in line with our earlier definition.
+
+There are many R packages that can be applied to calculate the weight of evidence and information value. Here, we will use quite versatile [scorecard](https://cran.r-project.org/web/packages/scorecard/index.html/) package. Its function `woebin()` performs automatic optimal binning for the predictors using tree-like segmentation, but it also offers you an option to pick your own breakpoints. However, it should be taken into account that `woebin()` computes WOE as *ln(Distr.Bad<sub>i</sub> / Distr.Good<sub>i</sub>)*, so we need to multiply all resulting WOEs by *-100* to get the values that are in line with our earlier definition.  
 
 > For those who have her majesty **R** installed on their computer and are eager to experiment with WOE binning, you can use a simple Shiny application that I built specially for this occasion. You just need to run next two lines of code and off you go!
 >
