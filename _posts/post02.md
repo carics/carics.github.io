@@ -122,43 +122,49 @@ But before we start, we have to say a few things. First, although we are going t
 
 And now, let us dive into the wonderful world of WOE binning.
 
-![](post02_files/figure-markdown_github/bin_loan_auto-1.png)
+![](/figures/post02/bin_loan_auto-1.png)
 
-![](post02_files/figure-markdown_github/bin_loan_manual-1.png)
+![](/figures/post02/bin_loan_manual-1.png)
 
 It is evident that smaller home equity loans are riskier than larger ones. This is something we have indeed expected. However, the data also show that at certain point loan's risk stops decreasing and starts slowly increasing, although it never reaches the (high) risk level for the small loans. The manual binning is necessary due to the fact that first automatically selected bin has only 32 cases and that calculated intervals are not acceptable from the business point of view. For instance, is it reasonable to have a separate bin for loans that are between 15,000$ and 16,000$, such a narrow range? Surely, the answer is no. Thus, we decided to discard these bins and create the new ones that are equally spaced. Although IV dropped from 0.23 to 0.16 in the process, this is the price we should gladly pay to prevent overfitting and to get a meaningful scorecard in the end. Finally, it should be noted that reversal in the risk trend is incorporated at the loan amount of 30,000$.
 
-![](post02_files/figure-markdown_github/bin_mortdue_auto-1.png)
+![](/figures/post02/bin_mortdue_auto-1.png)
 
-![](post02_files/figure-markdown_github/bin_mortdue_manual-1.png)
+![](/figures/post02/bin_mortdue_manual-1.png)
 
 Automatic binning for the amount due on existing mortgage produces pretty messy bins: two of them have less than 50 observations and there is no visible trend in risk level. Even though overall IV is reasonably high (0.11), its value is not, under this circumstances, a good indicator of the characteristics' predictive power. We decided to create three large groups (beside *missing* bin) and to introduce the positive linear relationship between MORTDUE and WOE values. As a consequence, IV fell to 0.06, but, at the same time, we got more justifiable bins.
 
-![](post02_files/figure-markdown_github/bin_value_auto-1.png)
+![](/figures/post02/bin_value_auto-1.png)
 
-![](post02_files/figure-markdown_github/bin_value_manual-1.png)
+![](/figures/post02/bin_value_manual-1.png)
 
 The only problem with automatic binning for VALUE is that the first bin consists of just 20 loans. Therefore, we set a higher upper limit for this bin. The linear trend is preserved and total IV practically remains unchanged.
 
-![](post02_files/figure-markdown_github/bin_reason_auto-1.png)
+![](/figures/post02/bin_reason_auto-1.png)
 
-![](post02_files/figure-markdown_github/bin_reason_manual-1.png)
+![](/figures/post02/bin_reason_manual-1.png)
 
 We merged *missing* and *Debt* *Consumption* categories because they have almost the identical bad rates. Nonetheless, the change we made is cosmetic. As we saw in Part One, the reason for a loan is not related to the obligors' creditworthiness and IV of 0.01 fully supports this conclusion.
 
-![](post02_files/figure-markdown_github/bin_job_auto-1.png) ![](post02_files/figure-markdown_github/bin_job_manual-1.png)
+![](/figures/post02/bin_job_auto-1.png) 
+
+![](/figures/post02/bin_job_manual-1.png)
 
 The JOB variable seems to be moderately predictive. In comparison to automatic binning, we chose to keep *Office* and *Professional* *Executive* categories separated, and as a result achieve a small increase in variable's IV. However, it is surprising that customers with unknown (e.g. missing) occupation are the least risky ones. If we cannot find a rational reason behind this, we could decide to set the WOE value for the *missing* group to zero. By doing so, we will not award our future applicants for hiding their occupation information from us. And in case we are deeply pessimistic about human nature, we could even assign them some negative WOE value or treat them like they belong to the riskiest group.
 
-![](post02_files/figure-markdown_github/bin_yoj_auto-1.png) ![](post02_files/figure-markdown_github/bin_yoj_manual-1.png)
+![](/figures/post02/bin_yoj_auto-1.png) 
+
+![](/figures/post02/bin_yoj_manual-1.png)
 
 The business experience shows that people who work longer at their current job are more likely to repay a debt. Hence, we immediately dismissed the outcome of automatic binning and proceeded to manual binning. Three large groups are formed and a positive trend in WOE values is established. Unfortunately, total IV significantly decreased in the process. Once again, the *missing* category has the lowest bad rate. All previously mentioned solutions to this problem are at our disposal.
 
-![](post02_files/figure-markdown_github/bin_derog_auto-1.png) ![](post02_files/figure-markdown_github/bin_derog_manual-1.png)
+![](/figures/post02/bin_derog_auto-1.png) 
+
+![](/figures/post02/bin_derog_manual-1.png)
 
 The trend in WOE for the number of major derogatory reports is negative and this is something we expected to see. We keep the number of groups that were chosen by automatic binning, but we make few changes in the cut-offs. Consequently, total IV only marginally decreased.
 
-![](post02_files/figure-markdown_github/bin_delinq_auto-1.png) ![](post02_files/figure-markdown_github/bin_delinq_manual-1.png)
+![](/figures/post02/bin_delinq_auto-1.png) ![](/figures/post02/bin_delinq_manual-1.png)
 
 The number of delinquent credit lines is obviously a strong predictor of someone's credit performance. For example, the person with 5 or more delinquent credit lines will almost certainly default on the loan. The strange occurrence is a below average bad rate for the *missing* group and it should definitely be inspected.
 
