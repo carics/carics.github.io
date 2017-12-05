@@ -168,19 +168,19 @@ The trend in WOE for the number of major derogatory reports is negative and this
 
 The number of delinquent credit lines is obviously a strong predictor of someone's credit performance. For example, the person with 5 or more delinquent credit lines will almost certainly default on the loan. The strange occurrence is a below average bad rate for the *missing* group and it should definitely be inspected.
 
-![](post02_files/figure-markdown_github/bin_clage_auto-1.png) ![](post02_files/figure-markdown_github/bin_clage_manual-1.png)
+![](/figures/post02/bin_clage_auto-1.png) ![](/figures/post02/bin_clage_manual-1.png)
 
 Although automatic binning produces a sound result for the CLAGE variable, we modified constructed bins to incorporate business logic. Therefore, we picked our cutoffs to be the exact number of years (e.g. 60 months = 5 years, 240 months = 20 years). The WOE values exhibit a clear positive trend, and it appears that *missing* group is most similar to the middle group (120-180 months). Based on its IV, this variable is a medium predictor.
 
-![](post02_files/figure-markdown_github/bin_ninq_auto-1.png) ![](post02_files/figure-markdown_github/bin_ninq_manual-1.png)
+![](/figures/post02/bin_ninq_auto-1.png) ![](/figures/post02/bin_ninq_manual-1.png)
 
 As expected, the higher the number of recent credit inquiries, the higher the chance that obligor will default. We made a small adjustment to initially calculated bins, thereby slightly increasing the total IV. The one more time, *missing* category has a suspiciously low bad rate.
 
-![](post02_files/figure-markdown_github/bin_clno_auto-1.png) ![](post02_files/figure-markdown_github/bin_clno_manual-1.png)
+![](/figures/post02/bin_clno_auto-1.png) ![](/figures/post02/bin_clno_manual-1.png)
 
 For the number of credit lines, the automatic binning produced quite confusing results, so we manually set more business-like intervals. Although IV halved, new bins better capture non-linearities in the data. The riskiest are the applicants with less than 5 credit lines, while the most creditworthy are those who have between 10 and 20 credit lines.
 
-![](post02_files/figure-markdown_github/bin_debtinc_auto-1.png) ![](post02_files/figure-markdown_github/bin_debtinc_manual-1.png)
+![](/figures/post02/bin_debtinc_auto-1.png) ![](/figures/post02/bin_debtinc_manual-1.png)
 
 The huge IV value of 2.19 for DEBTINC reveals that this variable is an extremely strong predictor of someone's probability of default. A debt-to-income ratio that is over 45% is a firm indicator of the future debt repayment issues and, thus, could be used as one of the policy rules for instantaneously declining potential customers. In addition, the people with non-available debt-to-income ratio are, as expected, much riskier than an average applicant.
 
@@ -304,6 +304,7 @@ REASON
 </td>
 </tr>
 </table>
+
 We are now able to convert our training and test set (which were created in Part One) to the weight of evidence values. We are going to use the function `woebin_ply()` for this purpose.
 
 <table style="text-align:center">
@@ -610,6 +611,7 @@ bad
 </td>
 </tr>
 </table>
+
 ### Logistic Regression Model
 
 At last, the time has come for us to create our first **credit** **scoring** **model**. We will apply logistic regression (`glm()` in **R**), which is hands down the most popular statistical method for building this type of models. Furthermore, a stepwise algorithm (`step()`) will be employed to eliminate non-predictive variables from the initial model that uses all possible characteristics. The outcome is shown in the following table:
@@ -912,6 +914,7 @@ Akaike Inf. Crit.
 </td>
 </tr>
 </table>
+
 As we can see, variables REASON and MORTDUE are excluded from the final model. The remaining variables are statistically significant at the 0.05 level, and their coefficients have the expected sign (i.e. the WOE values are negatively related to the probability of default).
 
 To evaluate the performance of our credit scoring model, we can use many statistical measures. The most well-known is the area under the [ROC curve](https://en.wikipedia.org/wiki/Receiver_operating_characteristic) (*AUC*). It represents the probability that a randomly chosen bad loan will have a higher probability of default than a randomly chosen good loan. Some other useful measures are accuracy, sensitivity, specificity, Gini coefficient and Kolmogorov-Smirnov (*KS*) statistic.
@@ -987,11 +990,11 @@ Fraud detection (insurance)
 </td>
 </tr>
 </table>
-source: Bart Baesens, Analytics in a Big Data World, Wiley, 2014.
+source: Bart Baesens, *Analytics in a Big Data World*, Wiley, 2014.
 
 We now use the logistic regression model to predict probabilities of default on the training and test set. These are then used to generate the ROC curve and compute AUC, Gini and KS statistic.
 
-![](post02_files/figure-markdown_github/perf-1.png)
+![](/figures/post02/perf-1.png)
 
 <table style="text-align:center">
 <tr>
@@ -1051,8 +1054,9 @@ KS
 </td>
 </tr>
 </table>
+
 The computed measures are somewhat lower on the test set, so there is a small amount of overfitting. That being said, we got the AUC value of outstanding **90.1%**. The model is without a doubt doing a great job in discriminating the good loans from the bad ones.
 
 ### End of Part Two
 
-WOE, IV, KS, AUC... Are we once and for all done with these hellish acronyms? Sadly, just for the day. In Part Three we will show some alternative methods that can be employed to estimate the credit scoring models. Nevertheless, the current logistic regression model will remain "the chosen one" and will be used in the second half of the next post for building a **credit** **risk** **scorecard**.
+WOE, IV, KS, AUC... Are we once and for all done with these hellish acronyms? Sadly, just for the day. In Part Three we will show some alternative methods that can be employed to estimate the credit scoring models. Nevertheless, the current logistic regression model will remain "the chosen one" and will be used in the second half of the next post for building a **credit risk scorecard**.
