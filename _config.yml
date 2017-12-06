@@ -11,7 +11,7 @@ description: A blog about R, data science and economics
 subtitle: A blog about data science, statistical modeling, and related topics
 baseurl: '' # the subpath of your site, e.g. /blog
 url: '' # the base hostname & protocol for your site http://www.example.com
-# google_analytics: 'UA-XXXXXX-X'
+google_analytics: 'UA-51690018-2'
 # twitter_username: 'twitter_username'
 
 # Build settings
