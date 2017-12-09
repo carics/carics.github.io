@@ -8,7 +8,7 @@ layout: default
   </header>
 
   <div class="post-content">
-    {{ content | truncate: "250" }}
+    {{ content | strip_html | truncatewords: 300 }}
   </div>
 
 </article>
