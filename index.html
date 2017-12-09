@@ -16,7 +16,7 @@ layout: default
 
   </header>
 
-    {{ post.content | truncatewords: 200 }}
+    {{ post.content | truncatewords: 50 }}
 
 <p class="post-meta" style="text-align: right; color: rgb(152,152,152);"><time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%b %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ post.author }}</span></span>{% endif %} • <label for="our-popup-{{ forloop.index }}"><i class="fa fa-share"></i> Share / Permalink</label></p>
 
