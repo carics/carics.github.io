@@ -1,6 +1,11 @@
-Credit Scoring Walk-through - Part Three
-================
-Stevan Caric
+---
+layout: post
+title: Credit Scoring Walk-through - Part Three
+author: Stevan Caric
+published: false
+status: publish
+tags: R RStudio Credit Scoring Model
+---
 
 In the previous two posts, we explored the data, applied the weight of evidence transformation to our predictors, and eventually built a credit scoring model with logistic regression. Part Three examines other possible methods that can be used to estimate the credit scoring model and demonstrates a **credit** **risk** **scorecard** development process.
 
@@ -118,8 +123,8 @@ By combining last two equations we get:
 where *N* is the number of predictors.
 
 > We can easily compute *offset* and *factor*. Let's say we want a score of 500 for odds of 1:1, and a score of 520 for odds of 1:2. This gives us the next two equations:
-> 500 = *offset* + *factor* \* *ln( 1 / 1)*
-> 520 = *offset* + *factor* \* *ln( 1 / 2)*
+> 500 = *offset* + *factor* \* *ln( 1 / 1)*  
+> 520 = *offset* + *factor* \* *ln( 1 / 2)*  
 > We then solve this system of equations and get that *offset* = 500 and *factor* = -28.85.
 
 In **R** the `scorecard()` function carries out all this calculations and builds a scorecard. The results for some of the variables are presented in the following tables. The points assigned to each bin are displayed in the last column.
