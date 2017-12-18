@@ -46,17 +46,17 @@ The data set used in this exercise contains the following variables:
 
 Different algorithms can be utilized for a decision tree construction. The most famous are C4.5, CART and CHAID. To estimate a decision tree model in **R** we will use `rpart()` function from the [rpart](https://www.rdocumentation.org/packages/rpart/versions/4.1-11) package. By default, `rpart()` constructs a CART model. However, many tuning parameters are available. In our case, we set the minimum number of observations in any terminal node ( *minbucket*) to 50. This is done to prevent a potential overfitting. The resulting plot (made by `fancyRpartPlot()` from [rattle](https://www.rdocumentation.org/packages/rattle/versions/5.1.0) package and with a little help of good old `text()` function) is given below:
 
-![](post03_files/figure-markdown_github/tree-1.png)
+![](/figures/post03/tree-1.png)
 
 Well, this plot is beautiful looking and simple enough at the same time. The final decision tree model makes all predictions using just three features: debt-to-income ratio (DEBTINC), number of delinquent credit lines (DELINQ) and age of oldest credit line in months (CLAGE). For instance, if an applicant has a debt-to-income ratio above 45% and at least one delinquent credit line, the model flags him as a bad customer. The relative importance of the variables is shown in the next plot.
 
-![](post03_files/figure-markdown_github/tree_varimp-1.png)
+![](/figures/post03/tree_varimp-1.png)
 
 Obviously, DEBTINC is by far the strongest predictor in the model. We can also see that among the variables that did not enter the final model, the value of the current property (VALUE), number of major derogatory reports (DEROG) and amount of the loan (LOAN) are the most significant.
 
 Indeed, we got a really simple and logical model, but what about its predictive power? To answer this question, we need to compute the model's *AUC*.
 
-![](post03_files/figure-markdown_github/tree_auc-1.png)
+![](/figures/post03/tree_auc-1.png)
 
 The red dashed line represents the ROC curve for the training sample, while multicolour full line represents the ROC curve for the test sample. Although the AUC on the test set is reasonably high ( **81.2%**), it is considerably less than the AUC for the logistic regression model ( **90.1%**). This is not surprising at all, and, in practice, decision trees are mostly used for variable selection or segmentation.
 
@@ -78,11 +78,11 @@ Decision trees are quite often used in ensemble methods. In this section, we wil
 
 We are going to estimate our [random forest](https://en.wikipedia.org/wiki/Random_forest) model in **R** using `randomForest()` function from (yes, you've guessed it) [randomForest](https://www.rdocumentation.org/packages/randomForest/versions/4.6-12) package. We set the number of variables randomly chosen as candidates at each split (mtry) to 3 and number of trees to grow (ntree) to 400. The relative importance of the predictors in the model are listed below:
 
-![](post03_files/figure-markdown_github/forest_varimp-1.png)
+![](/figures/post03/forest_varimp-1.png)
 
 Once again, the variable DEBTINC is the best predictor. However, this time it is not as dominant as it was in the simple decision tree model. Furthermore, due to the randomness in the splitting process, all variables take a part in the random forest model. But did we improve the predictive performance?
 
-![](post03_files/figure-markdown_github/forest_auc-1.png)
+![](/figures/post03/forest_auc-1.png)
 
 Yes, we did! We improved it a lot. We got the AUC on the test set of fantastic **95.1%**! We now have a great predictive model. The only problem is that it is entirely a **black box**. We do not actually know how any particular variable is related to the model's outcome. This could be irrelevant if you try, for instance, to detect a credit card fraud, but, in the credit scoring field, this is a highly undesirable characteristic. Thus, the logistic regression remains the go-to method.
 
@@ -92,11 +92,11 @@ Yes, we did! We improved it a lot. We got the AUC on the test set of fantastic *
 
 To perform boosting in **R** you can use `gbm()` from the [gbm](https://cran.r-project.org/web/packages/gbm/index.html) package. Several parameters can affect the predictive performance of the boosted models. Thus, we had experimented a bit with parameters' values before we chose our final model (`train()` from the [caret](https://topepo.github.io/caret/model-training-and-tuning.html) package makes this task effortless). In the end, we set the total number of trees to fit ( *n.trees*) to 500, shrinkage parameter or learning rate ( *shrinkage*) to 0.2 and number of cross-validation folds to perform ( *cv.folds*) to 5.
 
-![](post03_files/figure-markdown_github/boost_varimp-1.png)
+![](/figures/post03/boost_varimp-1.png)
 
 The variable importance plot is telling us a similar story as in the random forest case.
 
-![](post03_files/figure-markdown_github/boost_auc-1.png)
+![](/figures/post03/boost_auc-1.png)
 
 The AUC on the test set is **91.2%**. This value is between the AUC for the logistic regression model and the AUC for the random forest model.
 
@@ -108,21 +108,21 @@ A **credit risk scorecard** is just another way of presenting a linear model. Th
 
 We start with our logistic regression model:
 
-![](eq_logit.png)
+![](/figures/post03/eq_logit.png)
 
 where *odds = P(bad) / P(good)*, *WOE<sub>DEBTINC</sub>* is the weight of evidence coded debt-to-income ratio, and so on.
 
 We then express a score as a linear function of the *ln(odds)*:
 
-![](eq_score1.png)
+![](/figures/post03/eq_score1.png)
 
 By combining last two equations we get:
 
-![](eq_score2.png)
+![](/figures/post03/eq_score2.png)
 
 where *N* is the number of predictors.
 
-> We can easily compute *offset* and *factor*. Let's say we want a score of 500 for odds of 1:1, and a score of 520 for odds of 1:2. This gives us the next two equations:
+> We can easily compute *offset* and *factor*. Let's say we want a score of 500 for odds of 1:1, and a score of 520 for odds of 1:2. This gives us the next two equations:    
 > 500 = *offset* + *factor* \* *ln( 1 / 1)*  
 > 520 = *offset* + *factor* \* *ln( 1 / 2)*  
 > We then solve this system of equations and get that *offset* = 500 and *factor* = -28.85.
@@ -788,6 +788,7 @@ missing
 </td>
 </tr>
 </table>
+
 We can now use this scorecard to score the applicants in our data set. This can be achieved with the function `scorecard_ply()`.
 
 <table style="text-align:center">
@@ -1075,7 +1076,8 @@ score
 </table>
 Next, we can plot and compare the score distributions for the training and test set.
 
-![](post03_files/figure-markdown_github/card_plot-1.png)![](post03_files/figure-markdown_github/card_plot-2.png)
+![](/figures/post03/card_plot-1.png)
+![](/figures/post03/card_plot-2.png)
 
 Clearly, the score distributions are rather close, so we can conclude that our scorecard makes reasonable predictions. This can also be confirmed by calculating a population stability index ( *PSI*). The PSI value of 0.01 indicates that actual distribution is almost the same as expected distribution.
 
